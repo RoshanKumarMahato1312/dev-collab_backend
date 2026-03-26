@@ -18,10 +18,13 @@ import { errorHandler } from "./middleware/error";
 export const app = express();
 
 app.use(
-  cors({
-    origin: env.clientUrl,
-    credentials: true
-  })
+    cors({
+        origin:
+            process.env.NODE_ENV === "production"
+                ? ["https://dev-collab-frontend-nu.vercel.app"]
+                : ["http://localhost:3000"],
+        credentials: true,
+    })
 );
 app.use(helmet());
 app.use(morgan("dev"));
