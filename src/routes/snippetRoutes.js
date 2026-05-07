@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const snippetController_1 = require("../controllers/snippetController");
+const auth_1 = require("../middleware/auth");
+const router = (0, express_1.Router)();
+router.use(auth_1.authMiddleware);
+router.post("/:projectId", snippetController_1.createSnippet);
+router.get("/:projectId", snippetController_1.getSnippets);
+exports.default = router;
