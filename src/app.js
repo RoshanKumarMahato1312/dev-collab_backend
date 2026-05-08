@@ -28,7 +28,15 @@ exports.app.use((0, cors_1.default)({
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
-exports.app.options("*", cors()); 
+exports.app.options("*", (0, cors_1.default)({
+    origin: [
+        "https://dev-collab-frontend-nu.vercel.app",
+        "http://localhost:3000"
+    ],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+}));
 exports.app.use((0, helmet_1.default)());
 exports.app.use((0, morgan_1.default)("dev"));
 exports.app.use(express_1.default.json({ limit: "1mb" }));
